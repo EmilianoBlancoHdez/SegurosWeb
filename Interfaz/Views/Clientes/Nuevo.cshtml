@@ -1,0 +1,45 @@
+﻿@using Interfaz.Models.Request
+@model Cliente
+@{
+    ViewBag.Title = "Cliente nuevo";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Agregar cliente</h2>
+
+@using (Html.BeginForm("Nuevo", "Clientes", FormMethod.Post, htmlAttributes: new { id = "form" }))
+{
+    <div class="col-md-6">
+        <label>Nombre</label>
+        @Html.TextBoxFor(c => c.Nombre, new { @class = "form-control" })
+        @Html.ValidationMessage("Nombre", new { @class = "text-danger"})
+    </div>
+    <br />
+    <div>
+        <input type="button" class="btn btn-primary" id="guardar" value="Guardar" />
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+        $('#guardar').click(function () {
+            var formContainer = $('#form');
+
+            $.ajax({
+                url: '@Url.Action("Nuevo", "Clientes")',
+                type: 'POST',
+                cache: false,
+                data: formContainer.serialize(),
+                async: true,
+                success: function (result) {
+                    console.log('exito');
+                },
+                error: function (jqXHR, textStatus, error) {
+                    //$('.model-status').text("Estado: Error inesperado");
+                    console.log('Manejar error');
+                }
+            });
+        });
+</script>
+}

@@ -1,0 +1,28 @@
+﻿@model List<Interfaz.Models.ViewModels.CoberturasViewModel>
+@{
+    ViewBag.Title = "Coberturas";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+@Html.ActionLink("Nuevo", "Index", "Coberturas", new { }, new { @class = "btn btn-primary mb-2" })
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha de modificación</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.ID</td>
+                <td>@cliente.Descripcion</td>
+                <td>@cliente.FechaModificacion</td>
+            </tr>
+        }
+    </tbody>
+</table>
