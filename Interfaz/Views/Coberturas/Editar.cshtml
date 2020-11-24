@@ -1,0 +1,33 @@
+﻿@using Interfaz.Models.ViewModels
+@model CoberturasViewModel
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Editar Cobertura</h2>
+
+@using (Html.BeginForm("Editar", "Coberturas", FormMethod.Post, htmlAttributes: new { id = "form" }))
+{
+    <div class="col-md-6">
+        <label>Nombre</label>
+        @Html.TextBoxFor(c => c.ID, new { @class = "form-control", @readOnly = true })
+        @Html.ValidationMessage("ID", new { @class = "text-danger" })
+
+    <label>Descripción</label>
+        @Html.TextBoxFor(c => c.Descripcion, new { @class = "form-control" })
+        @Html.ValidationMessage("Descripcion", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div>
+        <input type="submit" class="btn btn-primary" value="Guardar Cambios" />
+        @Html.ActionLink("Regresar", "Index", "Coberturas", null, new { @class = "btn btn-success" })
+    </div>
+}
+
+@if (Model.MensajeError != null && !string.IsNullOrEmpty(Model.MensajeError))
+{
+    <div class="alert alert-danger mt-2">
+        <strong>Error!</strong> @Model.MensajeError
+    </div>
+}

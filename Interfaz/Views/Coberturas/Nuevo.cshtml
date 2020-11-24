@@ -1,0 +1,29 @@
+﻿@using Interfaz.Models.Request
+@model Coberturas
+@{
+    ViewBag.Title = "Nuevo";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>Agregar Cobertura</h2>
+
+@using (Html.BeginForm("Nuevo", "Coberturas", FormMethod.Post, htmlAttributes: new { id = "form" }))
+{
+    <div class="col-md-6">
+        <label>Descripción</label>
+        @Html.TextBoxFor(c => c.Descripcion, new { @class = "form-control" })
+        @Html.ValidationMessage("Descripcion", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div>
+        <input type="submit" class="btn btn-primary" value="Guardar" />
+        @Html.ActionLink("Regresar", "Index", "Coberturas", null, new { @class = "btn btn-success" })
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="alert alert-danger mt-2">
+        <strong>Error!</strong> @Model.MensajeError
+    </div>
+}

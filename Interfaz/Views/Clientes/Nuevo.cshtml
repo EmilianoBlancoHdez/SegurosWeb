@@ -3,20 +3,48 @@
 @{
     ViewBag.Title = "Cliente nuevo";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    List<SelectListItem> lista = ViewBag.lista;
 }
 
-<h2>Agregar cliente</h2>
+<h2>Agregar Cliente</h2>
 
 @using (Html.BeginForm("Nuevo", "Clientes", FormMethod.Post, htmlAttributes: new { id = "form" }))
 {
     <div class="col-md-6">
         <label>Nombre</label>
         @Html.TextBoxFor(c => c.Nombre, new { @class = "form-control" })
-        @Html.ValidationMessage("Nombre", new { @class = "text-danger"})
+        @Html.ValidationMessage("Nombre", new { @class = "text-danger" })
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Coberturas</div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    @foreach (var cliente in lista)
+                    {
+                        <li class="list-group-item">
+                            <label><input type="checkbox" name="Planes" value="@cliente.Value" />@cliente.Text</label>
+                            @*<label>
+                                @Html.CheckBox("Planes", false, new { @value = cliente.Value, @name="Planes" })
+                                @cliente.Text
+                            </label>*@
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
     </div>
     <br />
     <div>
-        <input type="button" class="btn btn-primary" id="guardar" value="Guardar" />
+        @*<input type="button" class="btn btn-primary" id="guardar" value="Guardar" />*@
+        <input type="submit" class="btn btn-primary" value="Guardar" />
+        @Html.ActionLink("Regresar", "Index", "Clientes", null, new { @class = "btn btn-success" })
+    </div>
+}
+
+@if(Model != null)
+{
+    <div class="alert alert-danger mt-2">
+        <strong>Error!</strong> @Model.MensajeError
     </div>
 }
 
@@ -26,7 +54,9 @@
         $('#guardar').click(function () {
             var formContainer = $('#form');
 
-            $.ajax({
+            
+
+            @*$.ajax({
                 url: '@Url.Action("Nuevo", "Clientes")',
                 type: 'POST',
                 cache: false,
@@ -34,12 +64,14 @@
                 async: true,
                 success: function (result) {
                     console.log('exito');
+                    var r = JSON.stringify(r);
+                    console.log(r);
                 },
                 error: function (jqXHR, textStatus, error) {
                     //$('.model-status').text("Estado: Error inesperado");
                     console.log('Manejar error');
                 }
-            });
+            });*@
         });
 </script>
 }

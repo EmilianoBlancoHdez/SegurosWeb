@@ -1,0 +1,59 @@
+﻿@using Interfaz.Models.ViewModels
+@model ClienteViewModel
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    string nombre = Model.Nombre;
+    List<SelectListItem> lista = ViewBag.lista;
+    List<PlanesViewModel> listaPlanes = ViewBag.listaPlanes;
+}
+
+<h2>Editar Cliente</h2>
+
+@using (Html.BeginForm("Editar", "Clientes", FormMethod.Post, htmlAttributes: new { id = "form" }))
+{
+<div class="col-md-6">
+    <label>Nombre</label>
+    @Html.TextBoxFor(c => c.ID, new { @class = "form-control", @readOnly = true })
+    @Html.ValidationMessage("ID", new { @class = "text-danger" })
+
+    <label>Nombre</label>
+    @Html.TextBoxFor(c => c.Nombre, new { @class = "form-control" })
+    @Html.ValidationMessage("Nombre", new { @class = "text-danger" })
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Coberturas</div>
+        <div class="panel-body">
+            <ul class="list-group">
+                @foreach (var planes in lista)
+                {
+                    var bandera = false;
+                    foreach (var clientesPlanes in listaPlanes)
+                    {
+                        if (int.Parse(planes.Value) == clientesPlanes.ID)
+                        {
+                            bandera = true;
+                            break;
+                        }
+                    }
+                    <li class="list-group-item">
+                        <label><input type="checkbox" name="Planes" value="@planes.Value" @(bandera ? "checked" : "") />@planes.Text</label>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+    <br />
+    <div>
+        <input type="submit" class="btn btn-primary" value="Guardar Cambios" />
+        @Html.ActionLink("Regresar", "Index", "Clientes", null, new { @class = "btn btn-success" })
+    </div>
+}
+
+@if (Model.MensajeError != null && !string.IsNullOrEmpty(Model.MensajeError))
+{
+    <div class="alert alert-danger mt-2">
+        <strong>Error!</strong> @Model.MensajeError
+    </div>
+}

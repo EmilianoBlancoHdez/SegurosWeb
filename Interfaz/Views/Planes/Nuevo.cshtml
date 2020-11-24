@@ -1,0 +1,45 @@
+﻿@using Interfaz.Models.Request
+@model Planes
+@{
+    ViewBag.Title = "Nuevo";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    List<SelectListItem> lista = ViewBag.lista;
+}
+
+<h2>Agregar Plan</h2>
+
+@using (Html.BeginForm("Nuevo", "Planes", FormMethod.Post, htmlAttributes: new { id = "form" }))
+{
+    <div class="col-md-6">
+        <label>Descripción</label>
+        @Html.TextBoxFor(c => c.Descripcion, new { @class = "form-control" })
+        @Html.ValidationMessage("Descripcion", new { @class = "text-danger" })
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Coberturas</div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    @foreach (var cobertura in lista)
+                    {
+                        <li class="list-group-item">
+                            <label><input type="checkbox" name="Coberturas" value="@cobertura.Value" />@cobertura.Text</label>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <div>
+        <input type="submit" class="btn btn-primary" value="Guardar" />
+        @Html.ActionLink("Regresar", "Index", "Planes", null, new { @class = "btn btn-success" })
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="alert alert-danger mt-2">
+        <strong>Error!</strong> @Model.MensajeError
+    </div>
+}

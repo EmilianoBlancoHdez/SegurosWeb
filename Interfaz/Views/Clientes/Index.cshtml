@@ -14,16 +14,21 @@
             <th scope="col">ID</th>
             <th scope="col">Nombre</th>
             <th scope="col">Fecha de modificación</th>
+            <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var cliente in Model)
         {
-            <tr>
-                <td>@cliente.ID</td>
-                <td>@cliente.Nombre</td>
-                <td>@cliente.FechaModificacion</td>
-            </tr>
+        <tr>
+            <td>@cliente.ID</td>
+            <td>@cliente.Nombre</td>
+            <td>@cliente.FechaModificacion</td>
+            <td>
+                @Html.ActionLink("Modificar", "Editar", "Clientes", new { id = cliente.ID }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Eliminar", "Eliminar", "Clientes", new { id = cliente.ID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

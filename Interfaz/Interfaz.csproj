@@ -132,6 +132,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Request\Cliente.cs" />
+    <Compile Include="Models\Request\Coberturas.cs" />
+    <Compile Include="Models\Request\Planes.cs" />
     <Compile Include="Models\Request\Response.cs" />
     <Compile Include="Models\ViewModels\ClienteViewModel.cs" />
     <Compile Include="Models\ViewModels\CoberturasViewModel.cs" />
@@ -282,6 +284,12 @@
     <Content Include="Views\Planes\Index.cshtml" />
     <Content Include="Views\Coberturas\Index.cshtml" />
     <Content Include="Views\Clientes\Nuevo.cshtml" />
+    <Content Include="Views\Clientes\Editar.cshtml" />
+    <Content Include="Views\Planes\Nuevo.cshtml" />
+    <Content Include="Views\Planes\Editar.cshtml" />
+    <Content Include="Views\Coberturas\Nuevo.cshtml" />
+    <Content Include="Views\Coberturas\Editar.cshtml" />
+    <Content Include="Views\Clientes\ListadoCLientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,5 +4,6 @@
     public class Plan
     {
         public string Descripcion { get; set; }
+        public int[] Coberturas { get; set; }
     }
 }

@@ -182,6 +182,7 @@
     <Compile Include="Repositorio\ConsultarCoberturas.cs" />
     <Compile Include="Repositorio\ConsultarPlanes.cs" />
     <Compile Include="Repositorio\ConsultarSeguros.cs" />
+    <Compile Include="Utils\Utilidades.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

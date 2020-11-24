@@ -50,10 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaClientes.cs" />
     <Compile Include="Clientes.cs" />
+    <Compile Include="ClientesPlanes.cs" />
     <Compile Include="Coberturas.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="ContextDb.cs" />
     <Compile Include="Contexto.cs" />
     <Compile Include="Planes.cs" />
+    <Compile Include="PlanesCobertura.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@
 }
 
 <h2>@ViewBag.Title</h2>
-@Html.ActionLink("Nuevo", "Index", "Planes", new { }, new { @class = "btn btn-primary mb-2" })
+@Html.ActionLink("Nuevo", "Nuevo", "Planes", new { }, new { @class = "btn btn-primary mb-2" })
 
 <table class="table table-striped table-dark">
     <thead>
@@ -13,16 +13,20 @@
             <th scope="col">ID</th>
             <th scope="col">Descripción</th>
             <th scope="col">Fecha de modificación</th>
+            <th scope="col">Modificar</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var cliente in Model)
         {
-            <tr>
-                <td>@cliente.ID</td>
-                <td>@cliente.Descripcion</td>
-                <td>@cliente.FechaModificacion</td>
-            </tr>
+        <tr>
+            <td>@cliente.ID</td>
+            <td>@cliente.Descripcion</td>
+            <td>@cliente.FechaModificacion</td>
+            <td>
+                @Html.ActionLink("Modificar", "Editar", "Planes", new { id = cliente.ID }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

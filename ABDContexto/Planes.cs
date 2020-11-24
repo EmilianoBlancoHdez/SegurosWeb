@@ -8,6 +8,13 @@ namespace ABDContexto
 
     public partial class Planes
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Planes()
+        {
+            ClientesPlanes = new HashSet<ClientesPlanes>();
+            PlanesCobertura = new HashSet<PlanesCobertura>();
+        }
+
         public int ID { get; set; }
 
         [Required]
@@ -15,5 +22,11 @@ namespace ABDContexto
         public string Descripcion { get; set; }
 
         public DateTime? FechaModificacion { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClientesPlanes> ClientesPlanes { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlanesCobertura> PlanesCobertura { get; set; }
     }
 }

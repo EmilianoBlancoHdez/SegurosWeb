@@ -2,11 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class Cliente
+    public class Coberturas
     {
         [Required]
-        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
         public string MensajeError { get; set; }
-        public int[] Planes { get; set; }
     }
 }
